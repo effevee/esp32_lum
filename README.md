@@ -16,11 +16,12 @@ Daar worden ze gemonitored en een email wordt verstuurd wanneer de kweek klaar i
 ## Bedrading
 ESP32 Pin|DH1750 Pin
 :--:|:--:|
-|3V3||VCC|
-|GND||GND|
+|3V3|VCC|
+|GND|GND|
 |D22|SCL|
 |D21|SDA|
 |D5*|GND*|
+
 *Debug ON
 
 ## MicroPython software
@@ -32,4 +33,5 @@ ESP32 Pin|DH1750 Pin
 ## ThingSpeak IoT platform
 
 De sensor metingen worden upgeload naar het ThingSpeak IoT platform.
+
 ![ThingSpeak Dashboard](images/thingspeak_dashboard.jpg)

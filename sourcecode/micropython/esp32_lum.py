@@ -1,11 +1,11 @@
 '''
-    Lichtmeting in algen reactorvat (c)2024 Effevee
+    Lichtmeting in algen reactorfles (c)2024 Effevee
     
     Meten van de lichtsterkte in een algenkweek reactor. Naarmate de algengroei vordert, vermindert de licht doorlaatbaarheid. Op een bepaald punt
     is de algenkweek klaar en moet het reactorvat opnieuw gevuld worden. De lichtsensor metingen worden geupload naar het ThingSpeak IoT platform.
     Daar worden ze gemonitored en een email wordt verstuurd wanneer de kweek klaar is.   
     
-    Hardware : - DOIT ESP32 V1 dev board
+    Hardware : - Wemos ESP32-S2 Mini V1.00 dev board
                - BH1750 lichtsensor
  
     Software : MicroPython code
@@ -15,16 +15,15 @@
                 -----      ------
                 3V3   <-->   VCC
                 GND   <-->   GND
-                D22   <-->   SCL
-                D21   <-->   SDA
-                D5    <-->   GND (DEBUG ON)
+                GPIO9 <-->   SCL
+                GPIO8 <-->   SDA
                 
     More details on https://github.com/effevee/esp32_lum
     
 '''
 
 ####################################################################################
-# Bibliotheken
+# Libraries
 ####################################################################################
 
 from machine import Pin, SoftI2C, deepsleep
@@ -35,8 +34,10 @@ import sys
 import urequests
 from bh1750 import BH1750
 
+   
+
 ####################################################################################
-# Fout routine
+# Error routine
 ####################################################################################
 
 def show_error():
@@ -51,24 +52,6 @@ def show_error():
         utime.sleep(0.5)
         led.value(config.LED_OFF)
         utime.sleep(0.5)
-    
-
-####################################################################################
-# Check debug on
-####################################################################################
-
-def debug_on():
-    ''' check if debugging is on - debug pin LOW '''
-    
-    # debug pin object
-    debug = Pin(config.DEBUG_PIN, Pin.IN, Pin.PULL_UP)
-    
-    # check debug pin
-    if debug.value() == 0:
-        # print('Debug mode detected.')
-        return True
-    
-    return False
 
 
 ####################################################################################
@@ -76,13 +59,13 @@ def debug_on():
 ####################################################################################
 
 def connect_wifi():
-    ''' connect the µcontroller to the local wifi network '''
+    ''' connect the microcontroller to the local wifi network '''
     
     # disable AP mode of µcontroller
     ap_if = network.WLAN(network.AP_IF)
     ap_if.active(False)
     
-    # enable STAtion mode of µcontroller
+    # enable STAtion mode of microcontroller
     sta_if = network.WLAN(network.STA_IF) 
 
     # if no wifi connection exist
@@ -144,7 +127,7 @@ def get_sensor_readings():
     # read BH1750 sensor
     bh1750_lum = bh1750.luminance(BH1750.ONCE_HIRES_1)
     
-    if debug_on():
+    if config.DEBUG:
         print('BH1750FVI L: {:.0f} lux' .format(bh1750_lum))
 
     return [{'bh1750_lum': bh1750_lum}]
@@ -179,7 +162,7 @@ def log_sensor_readings(sensor_data):
     
 
 ####################################################################################
-# deepsleep to save battery
+# deepsleep until next measurement
 ####################################################################################
 
 def deepsleep_till_next_cycle():
@@ -213,14 +196,11 @@ def run():
 
     except Exception as exc:
         sys.print_exception(exc)
-        show_error()
     
     # goto deepsleep if not in debugging mode
-    if not debug_on():
+    if not config.DEBUG:
         deepsleep_till_next_cycle()
         
 
 run()
         
-    
-

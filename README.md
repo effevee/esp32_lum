@@ -1,14 +1,13 @@
 # esp32_lum
 
-Meten van de lichtsterkte in een algen reactorvat. Naarmate de algengroei vordert, vermindert de licht doorlaatbaarheid van het reactorvat. Op een bepaald punt
-is de algenkweek klaar en moet het reactorvat opnieuw gevuld worden. De lichtsterkte metingen worden geupload naar het ThingSpeak IoT platform.
+Meten van de lichtsterkte in een algenkweek reactor. Naarmate de algengroei vordert, vermindert de licht doorlaatbaarheid. Op een bepaald punt is de algenkweek klaar en moet het reactorvat opnieuw gevuld worden. De lichtsensor metingen worden geupload naar het ThingSpeak IoT platform.
 Daar worden ze gemonitored en een email wordt verstuurd wanneer de kweek klaar is.   
-
+  
 ## Hardware
 
-#### DOIT ESP32 V1 Microcontroller
+#### Wemos ESP32-S2 Mini Microcontroller
 
-![We gebruiken als microprocessor een DOIT ESP32 V1 dev bord](images/doit_esp32_v1_pins.jpg)
+![We gebruiken als microprocessor een Wemos ESP32-S2 Mini dev bord](images/wemos_esp32_s2_mini.jpg)
 
 #### BH1750 licht sensor
 ![Voor de lichtmeting gebruiken we een BH1750 sensor](images/bh1750_light_sensor_pins.jpg)
@@ -18,11 +17,8 @@ ESP32 Pin|DH1750 Pin
 :--:|:--:|
 |3V3|VCC|
 |GND|GND|
-|D22|SCL|
-|D21|SDA|
-|D5*|GND*|
-
-*Debug ON
+|GPIO9|SCL|
+|GPIO8|SDA|
 
 ## MicroPython software
 

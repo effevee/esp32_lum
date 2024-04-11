@@ -1,14 +1,12 @@
 # I2C pins
-SCL_PIN = 22   # D22
-SDA_PIN = 21   # D21
+SCL_PIN = 9   # GPIO9
+SDA_PIN = 8   # GPIO8
 
 # Error led pin
-LED_PIN = 2   # onboard led
-LED_ON = 0    # inverse logic     
-LED_OFF = 1
+LED_PIN = 15  # onboard led
 
-# Debug (LOW for debugging)
-DEBUG_PIN = 5  # D5
+# Debug
+DEBUG = True  # True/False
 
 # interval between measurements (seconds)
 INTERVAL = 15*60

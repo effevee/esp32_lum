@@ -48,9 +48,9 @@ def show_error():
     
     # flash 3 times
     for i in range(3):
-        led.value(config.LED_ON)
+        led.value(1)
         utime.sleep(0.5)
-        led.value(config.LED_OFF)
+        led.value(0)
         utime.sleep(0.5)
 
 
@@ -78,12 +78,14 @@ def connect_wifi():
         sta_if.active(True)
         
         # try to connect to the wifi network
-        sta_if.connect(config.SSID, config.PASS)  
+        #sta_if.connect(config.SSID, config.PASS)  
         
         # keep trying for a number of times
         tries = 0
         while not sta_if.isconnected() and tries < config.MAX_TRIES:  
             
+            sta_if.connect(config.SSID, config.PASS)  
+
             # show progress
             print('.', end='')
             
@@ -196,6 +198,7 @@ def run():
 
     except Exception as exc:
         sys.print_exception(exc)
+        show_error()
     
     # goto deepsleep if not in debugging mode
     if not config.DEBUG:

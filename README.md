@@ -7,9 +7,14 @@ Daar worden ze gemonitored en een email wordt verstuurd wanneer de kweek klaar i
 
 #### Wemos ESP32-S2 Mini Microcontroller
 
+[datasheet](resources/esp32-s2_datasheet_en.pdf)
+
 ![We gebruiken als microprocessor een Wemos ESP32-S2 Mini dev bord](images/wemos_esp32_s2_mini.jpg)
 
 #### BH1750 licht sensor
+
+[datasheet](resources/Rohm-BH1750FVI-TR-datasheet.pdf)
+
 ![Voor de lichtmeting gebruiken we een BH1750 sensor](images/bh1750_light_sensor_pins.jpg)
 
 ## Bedrading

@@ -13,6 +13,8 @@ Daar worden ze gemonitored en een email wordt verstuurd wanneer de kweek klaar i
 ![Voor de lichtmeting gebruiken we een BH1750 sensor](images/bh1750_light_sensor_pins.jpg)
 
 ## Bedrading
+![Bedrading schema](images/wiring_esp32_s2_bh1750.jpg)
+
 ESP32 Pin|DH1750 Pin
 :--:|:--:|
 |3V3|VCC|
@@ -20,6 +22,16 @@ ESP32 Pin|DH1750 Pin
 |GPIO9|SCL|
 |GPIO8|SDA|
 
+## Behuizing
+
+![Algemeen zicht behuizing](images/case_box_top.jpg)
+
+#### [STL behuizing box](case/lichtmeter_box.stl)
+#### [STL behuizing top](case/lichtmeter_top.stl)
+#### ![montage lichtsensor](images/case_1.jpg)
+#### ![montage microcontroller](images/case_2.jpg)
+#### ![zicht bovenaan](images/case_3.jpg)
+#### ![zicht onderaan met opening lichtsensor](images/case_4.jpg)
 ## MicroPython software
 
 #### [code](sourcecode/micropython/esp32_lum.py)
@@ -31,3 +43,4 @@ ESP32 Pin|DH1750 Pin
 De sensor metingen worden upgeload naar het ThingSpeak IoT platform.
 
 ![ThingSpeak Dashboard](images/thingspeak_dashboard.jpg)
+
